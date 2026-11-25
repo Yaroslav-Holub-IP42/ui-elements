@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>UI елементи</title>
+<style>
+  body { font-family: Segoe UI, Arial, sans-serif; background:#f4f6f9; color:#222; margin:0; padding:20px; }
+  h1 { text-align:center; }
+  section { background:#fff; max-width:800px; margin:16px auto; padding:16px 20px; border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,.15); }
+  h2 { margin-top:0; font-size:18px; color:#1a56b0; }
+  .desc { background:#eef3fb; border-left:4px solid #1a56b0; padding:8px 12px; margin-top:12px; font-size:14px; }
+  button.btn { background:#1a56b0; color:#fff; border:0; padding:8px 18px; border-radius:4px; cursor:pointer; font-size:14px; }
+  button.btn:hover { background:#144287; }
+  input[type=text] { padding:6px 10px; border:1px solid #aaa; border-radius:4px; width:240px; }
+  select { padding:6px 10px; border:1px solid #aaa; border-radius:4px; }
+  .tabs { display:flex; gap:4px; border-bottom:2px solid #ccc; }
+  .tab-btn { background:#e5e9f0; border:0; padding:8px 16px; cursor:pointer; border-radius:4px 4px 0 0; }
+  .tab-btn.active { background:#1a56b0; color:#fff; }
+  .tab-panel { display:none; padding:12px; border:1px solid #ccc; border-top:0; }
+  .tab-panel.active { display:block; }
+  .tooltip { position:relative; display:inline-block; border-bottom:1px dotted #1a56b0; cursor:help; }
+  .tooltip .tip { visibility:hidden; opacity:0; position:absolute; bottom:125%; left:50%; transform:translateX(-50%);
+    background:#333; color:#fff; padding:6px 10px; border-radius:4px; font-size:13px; white-space:nowrap; transition:opacity .2s; }
+  .tooltip:hover .tip { visibility:visible; opacity:1; }
+  table { border-collapse:collapse; width:100%; }
+  th, td { border:1px solid #ccc; padding:6px 10px; text-align:left; }
+  th { background:#1a56b0; color:#fff; cursor:pointer; user-select:none; }
+  tbody tr:nth-child(even) { background:#f0f4fa; }
+  tbody tr:hover { background:#dde8f8; }
+</style>
+</head>
+<body>
+<h1>UI елементи</h1>
+
+<section>
+  <h2>1. Radiobutton (перемикач)</h2>
+  <label><input type="radio" name="size" value="S" checked> Малий</label>
+  <label><input type="radio" name="size" value="M"> Середній</label>
+  <label><input type="radio" name="size" value="L"> Великий</label>
+  <div class="desc">Дозволяє вибрати <b>лише один</b> варіант із групи взаємовиключних. Вибір одного скидає інший.</div>
+</section>
+
+<section>
+  <h2>2. Checkbox (прапорець)</h2>
+  <label><input type="checkbox" checked> Отримувати новини</label>
+  <label><input type="checkbox"> Запам'ятати мене</label>
+  <label><input type="checkbox"> Прийняти умови</label>
+  <div class="desc">Дозволяє вибрати <b>кілька</b> незалежних опцій або увімкнути/вимкнути окремий параметр.</div>
+</section>
+
+<section>
+  <h2>3. Text input (текстове поле)</h2>
+  <input type="text" id="nameInput" placeholder="Введіть ваше ім'я">
+  <span id="echo"></span>
+  <div class="desc">Призначене для введення довільного тексту користувачем (імена, пошукові запити, email тощо). Тут введений текст відображається поруч.</div>
+</section>
+
+<section>
+  <h2>4. Tabs (вкладки)</h2>
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="t1">Про нас</button>
+    <button class="tab-btn" data-tab="t2">Послуги</button>
+    <button class="tab-btn" data-tab="t3">Контакти</button>
+  </div>
+  <div class="tab-panel active" id="t1">Інформація про компанію.</div>
+  <div class="tab-panel" id="t2">Перелік наданих послуг.</div>
+  <div class="tab-panel" id="t3">Телефон та адреса.</div>
+  <div class="desc">Групують контент у окремі панелі на одній сторінці; одночасно видно лише одну, що економить місце та структурує інформацію.</div>
+</section>
+
+<section>
+  <h2>5. Button (кнопка)</h2>
+  <button class="btn" id="btn">Натисни мене</button>
+  <span id="btnOut"></span>
+  <div class="desc">Ініціює дію за кліком користувача: відправлення форми, відкриття вікна, виконання команди.</div>
+</section>
+
+<section>
+  <h2>6. Text label (текстова мітка)</h2>
+  <label for="emailInput"><b>Email:</b></label>
+  <input type="text" id="emailInput" placeholder="user@example.com">
+  <div class="desc">Статичний текст, що підписує елемент інтерфейсу й пояснює, що вводити. Клік по мітці активує пов'язане поле (атрибут <code>for</code>).</div>
+</section>
+
+<section>
+  <h2>7. Link (посилання)</h2>
+  <a href="https://developer.mozilla.org/uk/" target="_blank">Документація MDN</a>
+  <div class="desc">Гіперпосилання для переходу на іншу сторінку, ресурс або фрагмент поточної сторінки.</div>
+</section>
+
+<section>
+  <h2>8. Tooltip (підказка)</h2>
+  <span class="tooltip">Наведіть курсор сюди<span class="tip">Це спливаюча підказка</span></span>
+  <div class="desc">Короткий текст, що з'являється при наведенні курсора й дає додаткове пояснення, не займаючи місця на сторінці постійно.</div>
+</section>
+
+<section>
+  <h2>9. Dropdown list (випадаючий список)</h2>
+  <select id="city">
+    <option>Київ</option>
+    <option>Львів</option>
+    <option>Харків</option>
+    <option>Одеса</option>
+  </select>
+  <span id="cityOut"></span>
+  <div class="desc">Компактно показує набір варіантів і дозволяє вибрати один; розкривається лише за потреби.</div>
+</section>
+
+<section>
+  <h2>10. Data grid (таблиця даних)</h2>
+  <table id="grid">
+    <thead><tr><th data-col="0">Ім'я ▲▼</th><th data-col="1">Вік ▲▼</th><th data-col="2">Місто ▲▼</th></tr></thead>
+    <tbody>
+      <tr><td>Олена</td><td>25</td><td>Київ</td></tr>
+      <tr><td>Андрій</td><td>31</td><td>Львів</td></tr>
+      <tr><td>Марія</td><td>22</td><td>Харків</td></tr>
+      <tr><td>Іван</td><td>28</td><td>Одеса</td></tr>
+    </tbody>
+  </table>
+  <div class="desc">Відображає структуровані дані у рядках і стовпцях. Клік по заголовку сортує таблицю за цим стовпцем.</div>
+</section>
+
+<script>
+  document.getElementById('nameInput').addEventListener('input', e => {
+    document.getElementById('echo').textContent = e.target.value ? 'Привіт, ' + e.target.value + '!' : '';
+  });
+  document.querySelectorAll('.tab-btn').forEach(b => b.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn, .tab-panel').forEach(x => x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById(b.dataset.tab).classList.add('active');
+  }));
+  let n = 0;
+  document.getElementById('btn').addEventListener('click', () => {
+    document.getElementById('btnOut').textContent = ' Натиснуто разів: ' + (++n);
+  });
+  const city = document.getElementById('city');
+  const showCity = () => document.getElementById('cityOut').textContent = ' Обрано: ' + city.value;
+  city.addEventListener('change', showCity); showCity();
+  const dir = {};
+  document.querySelectorAll('#grid th').forEach(th => th.addEventListener('click', () => {
+    const c = +th.dataset.col; dir[c] = !dir[c];
+    const tb = document.querySelector('#grid tbody');
+    [...tb.rows].sort((a, b) => {
+      const x = a.cells[c].textContent, y = b.cells[c].textContent;
+      const r = isNaN(x) ? x.localeCompare(y, 'uk') : x - y;
+      return dir[c] ? r : -r;
+    }).forEach(r => tb.appendChild(r));
+  }));
+</script>
+</body>
+</html>
